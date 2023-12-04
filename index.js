@@ -8,7 +8,10 @@ const uri = "mongodb+srv://gufronnewbiners:learnmongodbbosq@cluster0.dfppiak.mon
 
 const connect = async () => {
   try {
-    await mongoose.connect(uri)
+   const data = await mongoose.connect(uri)
+   if(!data) {
+    return 
+   }
     console.log('sucess')
   } catch (err) {
     console.log(err)
