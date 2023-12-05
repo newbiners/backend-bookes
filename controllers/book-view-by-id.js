@@ -31,9 +31,9 @@ const BookViewById = async (req, res) => {
         if (token) {
 
             jwt.verify(token, secretKey, async(error, user) => {
-                const dataBook = await VisitBook.findOne({user_id : user.userId})
-                console.log(dataBook)
-                if(!dataBook || dataBook.book_id !== id){
+                const dataBook = await VisitBook.findOne({user_id : user.userId, book_id : id})
+                if(!dataBook){
+                    console.log(dataBook, " booksese")
                     const visitBook = new VisitBook({
                         _id : new mongoose.Types.ObjectId(),
                         book_id: id,
